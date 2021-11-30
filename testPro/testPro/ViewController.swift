@@ -16,7 +16,22 @@ class ViewController: UIViewController {
         
         picker.center = view.center
         
+        picker.datePickerMode = .countDownTimer   //.date
+        
         self.view.addSubview(picker)
+        
+        var oneYearTime = TimeInterval()
+        oneYearTime = 365 * 24 * 60 * 60
+        
+        let todayDate = Date()
+        
+        let oneYearFromToday = todayDate.addingTimeInterval(oneYearTime)
+        let twoYearFromDate = todayDate.addingTimeInterval(2 * oneYearTime)
+        
+        picker.minimumDate = oneYearFromToday
+        picker.maximumDate = twoYearFromDate
+        
+        picker.countDownDuration = 2 * 60
         
         picker.addTarget(self, action: #selector(dataPickerChenge(paramdatePicker:)), for: .valueChanged)
     }
